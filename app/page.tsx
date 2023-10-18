@@ -1,9 +1,10 @@
 import Sidebar from "./components/Sidebar"
+import TextEditor from "./components/TextEditor"
 
 export default function Home() {
   return (
     <main>
-      <Sidebar />
+      <TextEditor />
     </main>
   )
 }

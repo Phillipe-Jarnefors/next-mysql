@@ -4,6 +4,7 @@ import "./globals.css"
 
 import Header from "./components/Header"
 import Main from "./components/Main"
+import Sidebar from "./components/Sidebar"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -21,6 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Header />
+        <Sidebar />
         <Main>{children}</Main>
       </body>
     </html>

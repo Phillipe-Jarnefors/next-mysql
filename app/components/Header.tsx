@@ -5,16 +5,17 @@ const Header = () => {
   return (
     <header className="sticky top-0 flex items-center justify-around h-24  teal-100 bg-cyan-700">
       <Link href="/">
-        <h1 className="text-4xl">Allt om Next.js!</h1>
+        <h1 className="text-4xl">TextEditor</h1>
       </Link>
 
       <nav>
         <ul className="list-none flex gap-2">
           <li>
-            <Link href="/struktur">Filstruktur</Link>
+            <Link href="/preview">Preview</Link>
           </li>
-          <li>Routing</li>
-          <li>Styling</li>
+          <li>
+            <Link href="/write">Write</Link>
+          </li>
         </ul>
       </nav>
     </header>

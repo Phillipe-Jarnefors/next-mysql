@@ -22,7 +22,7 @@ const Sidebar = async () => {
   console.log(docs)
 
   return (
-    <div>
+    <div className="border-2">
       <h2 className="text-xl">Documents</h2>
       <ul>
         {docs.map((doc) => (
