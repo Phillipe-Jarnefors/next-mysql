@@ -1,9 +1,11 @@
 "use client"
 
-import React, { useRef } from "react"
+import React, { useContext, useRef } from "react"
 import BundledEditor from "../BundledEditor"
+import { DocContext } from "./DocContext"
 
 export default function TextEditor() {
+  const { dataValues, setDataValues } = useContext(DocContext)
   const editorRef = useRef(null)
   const log = () => {
     if (editorRef.current) {
@@ -15,7 +17,7 @@ export default function TextEditor() {
       <BundledEditor
         apiKey={process.env.TINY_MCE}
         onInit={(editor) => (editorRef.current = editor)}
-        initialValue="<p>This is the initial content of the editor.</p>"
+        initialValue={`${dataValues.textContent}`}
         init={{
           height: 500,
           menubar: false,
@@ -39,7 +41,12 @@ export default function TextEditor() {
             "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
         }}
       />
-      <button onClick={log}>Save Text</button>
+      <button
+        className="border-2 px-4 py-2 text-white bg-slate-500"
+        onClick={log}
+      >
+        Save Text
+      </button>
     </>
   )
 }

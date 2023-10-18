@@ -5,6 +5,7 @@ import "./globals.css"
 import Header from "./components/Header"
 import Main from "./components/Main"
 import Sidebar from "./components/Sidebar"
+import { DocProvider } from "./components/DocContext"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -21,12 +22,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header />
-        <div className="flex">
-          <Sidebar />
-
-          <Main>{children}</Main>
-        </div>
+        <DocProvider>
+          <Header />
+          <div className="flex">
+            <Sidebar />
+            <Main>{children}</Main>
+          </div>
+        </DocProvider>
       </body>
     </html>
   )

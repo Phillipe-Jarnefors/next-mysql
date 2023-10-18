@@ -23,23 +23,13 @@ const Sidebar = async () => {
   })
   const data: DocumentAPI = await res.json()
   const docs = data.digitalDocs
-  console.log(docs)
 
   return (
     <div className="border-2 px-2 text-center w-[25%]">
       <h2 className="text-xl py-4">Documents</h2>
       <AddNewButton />
       <ul className="mt-8 text-center flex flex-col justify-center gap-2">
-        {docs.map((doc) => (
-          <div
-            key={doc._id}
-            className="border-2 rounded bg-slate-100 flex gap-2 items-center justify-between px-4"
-          >
-            <EditDocButton docId={doc._id} docName={doc.name} />
-
-            <DeleteButton />
-          </div>
-        ))}
+        <EditDocButton docs={docs} />
       </ul>
     </div>
   )

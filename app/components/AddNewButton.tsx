@@ -1,14 +1,10 @@
 "use client"
 import { log } from "console"
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
+import { DocContext } from "./DocContext"
 
 const AddNewButton = () => {
-  const [inputValues, setInputValues] = useState({
-    name: "",
-    textContent: "This is some new text...",
-    textColor: "black",
-    backgroundColor: "white",
-  })
+  const { inputValues, setInputValues } = useContext(DocContext)
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -16,7 +12,6 @@ const AddNewButton = () => {
       ...prevState,
       [name]: value,
     }))
-    console.log(inputValues)
   }
 
   const sendForm = async () => {
