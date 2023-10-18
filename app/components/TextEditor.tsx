@@ -1,22 +1,54 @@
 "use client"
 
-import React, { useContext, useRef } from "react"
+import React, { useContext, useEffect, useRef, useState } from "react"
 import BundledEditor from "../BundledEditor"
 import { DocContext } from "./DocContext"
+import { text } from "stream/consumers"
 
 export default function TextEditor() {
   const { dataValues, setDataValues } = useContext(DocContext)
+
   const editorRef = useRef(null)
-  const log = () => {
-    if (editorRef.current) {
-      console.log(editorRef.current.getContent())
+
+  const saveDocument = async () => {
+    let textRef = editorRef.current.getContent()
+    let textWithoutPTags = textRef
+      .replace(/<p[^>]*>/g, "")
+      .replace(/<\/p>/g, "")
+      .toString()
+
+    setDataValues((prevState) => ({
+      ...prevState,
+      textContent: textWithoutPTags,
+    }))
+
+    console.log(dataValues)
+
+    try {
+      const options = {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          _id: dataValues._id,
+          name: dataValues.name,
+          textContent: dataValues.textContent,
+          textColor: dataValues.textColor,
+          backgroundColor: dataValues.backgroundColor,
+          date: "",
+        }),
+      }
+      const req = await fetch("http://localhost:3000/api/digitaldocs", options)
+      return req
+    } catch (error) {
+      console.log(error)
     }
   }
+
   return (
     <>
       <BundledEditor
         apiKey={process.env.TINY_MCE}
-        onInit={(editor) => (editorRef.current = editor)}
+        onInit={(evt, editor) => (editorRef.current = editor)}
         initialValue={`${dataValues.textContent}`}
         init={{
           height: 500,
@@ -43,7 +75,7 @@ export default function TextEditor() {
       />
       <button
         className="border-2 px-4 py-2 text-white bg-slate-500"
-        onClick={log}
+        onClick={saveDocument}
       >
         Save Text
       </button>

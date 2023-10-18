@@ -1,5 +1,5 @@
 "use client"
-import { log } from "console"
+
 import React, { useContext, useState } from "react"
 import { DocContext } from "./DocContext"
 
@@ -22,7 +22,6 @@ const AddNewButton = () => {
     }
 
     const res = await fetch("http://localhost:3000/api/digitaldocs", options)
-    console.log(res)
 
     return res
   }

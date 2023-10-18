@@ -29,6 +29,30 @@ export default async function handler(req, res) {
       res.status(500).json({ message: "Error querying from database ", error })
     }
   }
+
+  if (req.method === "PUT") {
+    const { _id, name, textContent, textColor, backgroundColor, date } =
+      req.body
+    try {
+      const editDoc = await query({
+        query:
+          "UPDATE digitaldocuments SET name = ?, textContent = ?, textColor = ?, backgroundColor = ?, date = ? WHERE _id = ?",
+        values: [
+          name,
+          textContent,
+          textColor,
+          backgroundColor,
+          date || null,
+          _id,
+        ],
+      })
+
+      res.status(200).json({ editDoc })
+    } catch (error) {
+      console.log("Error: ", error)
+      res.status(500).json({ message: "Error querying from database ", error })
+    }
+  }
 }
 
 // if (req.method === "PUT") {

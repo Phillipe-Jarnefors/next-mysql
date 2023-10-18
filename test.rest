@@ -14,3 +14,18 @@ Content-Type: application/json
 
 
 ###
+
+PUT http://localhost:3000/api/digitaldocs
+Content-Type: application/json
+
+{
+    "_id": 3,
+    "name": "Updated text",
+    "textContent": "This is some text 3...",
+    "textColor": "red",
+    "backgroundColor": "black",
+    "date": ""
+}
+
+
+###
