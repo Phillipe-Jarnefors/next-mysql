@@ -14,7 +14,7 @@ export default function TextEditor() {
     <>
       <BundledEditor
         apiKey={process.env.TINY_MCE}
-        onInit={(evt, editor) => (editorRef.current = editor)}
+        onInit={(editor) => (editorRef.current = editor)}
         initialValue="<p>This is the initial content of the editor.</p>"
         init={{
           height: 500,
