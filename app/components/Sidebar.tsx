@@ -1,5 +1,4 @@
 import React from "react"
-import DeleteButton from "./DeleteButton"
 
 import EditDocButton from "./EditDocButton"
 import AddNewButton from "./AddNewButton"

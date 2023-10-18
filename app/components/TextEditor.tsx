@@ -3,45 +3,46 @@
 import React, { useContext, useEffect, useRef, useState } from "react"
 import BundledEditor from "../BundledEditor"
 import { DocContext } from "./DocContext"
-import { text } from "stream/consumers"
+import { useRouter } from "next/navigation"
 
 export default function TextEditor() {
+  const router = useRouter()
   const { dataValues, setDataValues } = useContext(DocContext)
 
   const editorRef = useRef(null)
 
-  const saveDocument = async () => {
+  const updateData = () => {
+    let fontRef = editorRef.current.selection.getNode().style.color.toString()
+    let bgRef = editorRef.current.selection
+      .getNode()
+      .style.backgroundColor.toString()
+
     let textRef = editorRef.current.getContent()
-    let textWithoutPTags = textRef
-      .replace(/<p[^>]*>/g, "")
-      .replace(/<\/p>/g, "")
-      .toString()
 
-    setDataValues((prevState) => ({
-      ...prevState,
-      textContent: textWithoutPTags,
-    }))
-
-    console.log(dataValues)
-
-    try {
-      const options = {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          _id: dataValues._id,
-          name: dataValues.name,
-          textContent: dataValues.textContent,
-          textColor: dataValues.textColor,
-          backgroundColor: dataValues.backgroundColor,
-          date: "",
-        }),
+    setDataValues((prevState) => {
+      const updatedDataValues = {
+        ...prevState,
+        textContent: textRef,
       }
-      const req = await fetch("http://localhost:3000/api/digitaldocs", options)
-      return req
-    } catch (error) {
-      console.log(error)
-    }
+
+      try {
+        const options = {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            ...updatedDataValues,
+            textColor: fontRef,
+            backgroundColor: bgRef,
+            date: "",
+          }),
+        }
+        const req = fetch("http://localhost:3000/api/digitaldocs", options)
+        return req
+      } catch (error) {
+        console.log(error)
+      }
+    })
+    router.refresh()
   }
 
   return (
@@ -49,7 +50,11 @@ export default function TextEditor() {
       <BundledEditor
         apiKey={process.env.TINY_MCE}
         onInit={(evt, editor) => (editorRef.current = editor)}
-        initialValue={`${dataValues.textContent}`}
+        initialValue={
+          dataValues.textContent !== undefined
+            ? dataValues.textContent
+            : "Success! :D"
+        }
         init={{
           height: 500,
           menubar: false,
@@ -75,7 +80,7 @@ export default function TextEditor() {
       />
       <button
         className="border-2 px-4 py-2 text-white bg-slate-500"
-        onClick={saveDocument}
+        onClick={updateData}
       >
         Save Text
       </button>
