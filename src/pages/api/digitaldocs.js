@@ -53,6 +53,21 @@ export default async function handler(req, res) {
       res.status(500).json({ message: "Error querying from database ", error })
     }
   }
+
+  if (req.method === "DELETE") {
+    const { _id } = req.body
+    try {
+      const deleteDoc = await query({
+        query: "DELETE FROM digitaldocuments WHERE _id = ?",
+        values: [_id],
+      })
+
+      res.status(200).json({ deleteDoc })
+    } catch (error) {
+      console.log("Error: ", error)
+      res.status(500).json({ message: "Error querying from database ", error })
+    }
+  }
 }
 
 // if (req.method === "PUT") {

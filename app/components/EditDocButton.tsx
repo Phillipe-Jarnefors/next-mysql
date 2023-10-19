@@ -21,7 +21,7 @@ const EditDoc = ({ docs }) => {
           className="border-2 rounded bg-slate-100 flex gap-2 items-center justify-between px-4"
         >
           <button onClick={() => EditDoc(doc._id)}>{doc.name}</button>
-          <DeleteButton />
+          <DeleteButton docId={doc._id} />
         </div>
       ))}
     </div>

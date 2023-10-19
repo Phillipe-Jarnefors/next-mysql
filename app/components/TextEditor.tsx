@@ -57,7 +57,7 @@ export default function TextEditor() {
         }
         init={{
           height: 500,
-          menubar: false,
+          menubar: true,
           plugins: [
             "advlist",
             "anchor",
@@ -72,8 +72,10 @@ export default function TextEditor() {
           ],
           toolbar:
             "undo redo | blocks | " +
-            "bold italic forecolor backcolor fontsize" +
-            "removeformat",
+            "bold italic forecolor backcolor | alignleft aligncenter " +
+            "alignright alignjustify | bullist numlist outdent indent | " +
+            "removeformat | help",
+
           content_style:
             "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
         }}
