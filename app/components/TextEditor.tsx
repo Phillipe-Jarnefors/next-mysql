@@ -46,7 +46,7 @@ export default function TextEditor() {
   }
 
   return (
-    <>
+    <div className="w-full px-4">
       <BundledEditor
         apiKey={process.env.TINY_MCE}
         onInit={(evt, editor) => (editorRef.current = editor)}
@@ -86,6 +86,6 @@ export default function TextEditor() {
       >
         Save Text
       </button>
-    </>
+    </div>
   )
 }

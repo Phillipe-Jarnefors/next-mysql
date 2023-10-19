@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tinymce/tinymce-react": "^4.3.0",
+    "html-react-parser": "^4.2.6",
     "mysql2": "^3.6.2",
     "next": "13.5.5",
     "raw-loader": "^4.0.2",

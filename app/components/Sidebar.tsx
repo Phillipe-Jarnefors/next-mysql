@@ -24,10 +24,10 @@ const Sidebar = async () => {
   const docs = data.digitalDocs
 
   return (
-    <div className="border-2 px-2 text-center w-[25%]">
-      <h2 className="text-xl py-4">Documents</h2>
+    <div className="px-4 text-primary bg-abstract text-center w-[25%] lg:w-[20%]">
+      <h2 className="text-standard py-4">Documents</h2>
       <AddNewButton />
-      <ul className="mt-8 text-center flex flex-col justify-center gap-2">
+      <ul className="mt-8 text-center flex flex-col gap-2">
         <EditDocButton docs={docs} />
       </ul>
     </div>

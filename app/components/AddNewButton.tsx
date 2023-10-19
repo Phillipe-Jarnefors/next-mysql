@@ -43,7 +43,7 @@ const AddNewButton = () => {
       ></input>
       <button
         type="submit"
-        className="border-2 rounded text-center bg-slate-100 flex gap-2 items-center justify-center w-full"
+        className="border-2 border-primary py-2 rounded text-center bg-abstract text-primary flex gap-2 items-center justify-center w-full"
       >
         Add New Doc
       </button>

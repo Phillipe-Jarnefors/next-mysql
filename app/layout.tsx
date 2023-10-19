@@ -24,8 +24,7 @@ export default function RootLayout({
       <body>
         <DocProvider>
           <Header />
-          <div className="flex">
-            <Sidebar />
+          <div className="">
             <Main>{children}</Main>
           </div>
         </DocProvider>

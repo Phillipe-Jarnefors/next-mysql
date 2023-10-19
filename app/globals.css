@@ -3,5 +3,6 @@
 @tailwind utilities;
 
 body {
+  box-sizing: border-box;
   color: rgb(var(--foreground-rgb));
 }
