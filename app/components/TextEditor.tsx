@@ -46,7 +46,7 @@ export default function TextEditor() {
   }
 
   return (
-    <div className="w-full px-4">
+    <div className="w-full px-6 pt-6">
       <BundledEditor
         apiKey={process.env.TINY_MCE}
         onInit={(evt, editor) => (editorRef.current = editor)}
@@ -81,10 +81,10 @@ export default function TextEditor() {
         }}
       />
       <button
-        className="border-2 px-4 py-2 text-white bg-slate-500"
+        className="mt-6 text-center bg-primary text-background text-medium font-semibold border-2 border-background flex gap-2 items-center justify-center px-8 py-2 rounded"
         onClick={updateData}
       >
-        Save Text
+        SAVE
       </button>
     </div>
   )

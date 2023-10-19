@@ -3,6 +3,7 @@
 import React, { useContext, useState } from "react"
 import { DocContext } from "./DocContext"
 import { useRouter } from "next/navigation"
+import { Icon } from "@iconify/react"
 
 const AddNewButton = () => {
   const router = useRouter()
@@ -31,21 +32,21 @@ const AddNewButton = () => {
   return (
     <form
       onSubmit={sendForm}
-      className="flex flex-col justify-center items-center"
+      className="flex justify-between gap-4 items-center border-2 rounded p-2 w-full"
     >
       <input
         type="text"
         required
         name="name"
         onChange={handleChange}
-        className="border-2"
-        placeholder="Name"
+        className="w-full rounded p-1 text-background"
+        placeholder="Add new doc..."
       ></input>
       <button
         type="submit"
-        className="border-2 border-primary py-2 rounded text-center bg-abstract text-primary flex gap-2 items-center justify-center w-full"
+        className="text-center h-8 w-8 border-2 border-primary rounded bg-abstract text-primary flex gap-2 items-center justify-center"
       >
-        Add New Doc
+        <Icon icon="icon-park-outline:add" />
       </button>
     </form>
   )

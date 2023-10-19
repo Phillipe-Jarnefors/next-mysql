@@ -4,7 +4,7 @@ import Sidebar from "../components/Sidebar"
 
 const Write = () => {
   return (
-    <div className="flex h-screen ">
+    <div className="flex sm:flex-row flex-col h-screen ">
       <Sidebar />
       <TextEditor />
     </div>

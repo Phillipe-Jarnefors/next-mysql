@@ -18,7 +18,7 @@ const EditDoc = ({ docs }) => {
       {docs.map((doc) => (
         <div
           key={doc._id}
-          className="border-2 rounded bg-slate-abstract flex gap-4 py-2 px-4"
+          className="border-2 rounded bg-background flex gap-4 py-2 px-4"
         >
           <button
             className="w-full border-r-2 border-primary"
@@ -26,7 +26,7 @@ const EditDoc = ({ docs }) => {
           >
             {doc.name}
           </button>
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center w-icon h-icon">
             <DeleteButton docId={doc._id} />
           </div>
         </div>

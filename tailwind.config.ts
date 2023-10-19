@@ -51,7 +51,7 @@ const config: Config = {
         4000: "4000ms",
       },
       animation: {
-        "fade-in": "fade-in 1s ease-in-out",
+        "fade-in": "fade-in 5s ease-in-out",
       },
       keyframes: {
         "fade-in": {
