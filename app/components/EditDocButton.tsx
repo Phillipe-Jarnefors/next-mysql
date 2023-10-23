@@ -14,24 +14,27 @@ const EditDoc = ({ docs }) => {
   }
 
   return (
-    <div className="flex flex-col gap-2">
-      {docs.map((doc) => (
-        <div
-          key={doc._id}
-          className="border-2 rounded bg-background flex gap-4 py-2 px-4"
-        >
-          <button
-            className="w-full border-r-2 border-primary"
-            onClick={() => EditDoc(doc._id)}
+    <fieldset className="border-2 py-6 rounded bg-background flex items-center justify-center w-full">
+      <legend className="font-medium">Documents</legend>
+      <div className="flex flex-col gap-4 mx-4 w-full">
+        {docs.map((doc) => (
+          <div
+            key={doc._id}
+            className="border-2 rounded bg-background flex justify-between py-4 px-6 w-full"
           >
-            {doc.name}
-          </button>
-          <div className="flex items-center justify-center w-icon h-icon">
-            <DeleteButton docId={doc._id} />
+            <button
+              className="border-r-2 border-primary w-[75%]"
+              onClick={() => EditDoc(doc._id)}
+            >
+              {doc.name}
+            </button>
+            <div className="w-icon h-icon">
+              <DeleteButton docId={doc._id} />
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </fieldset>
   )
 }
 

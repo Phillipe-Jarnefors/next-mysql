@@ -47,45 +47,64 @@ export default function TextEditor() {
 
   return (
     <div className="w-full px-6 pt-6">
-      <BundledEditor
-        apiKey={process.env.TINY_MCE}
-        onInit={(evt, editor) => (editorRef.current = editor)}
-        initialValue={
-          dataValues.textContent !== undefined
-            ? dataValues.textContent
-            : "Success! :D"
-        }
-        init={{
-          height: 500,
-          menubar: true,
-          plugins: [
-            "advlist",
-            "anchor",
-            "autolink",
-            "help",
-            "image",
-            "link",
-            "lists",
-            "searchreplace",
-            "table",
-            "wordcount",
-          ],
-          toolbar:
-            "undo redo | blocks | " +
-            "bold italic forecolor backcolor | alignleft aligncenter " +
-            "alignright alignjustify | bullist numlist outdent indent | " +
-            "removeformat | help",
+      {dataValues.textContent ? (
+        <>
+          <BundledEditor
+            apiKey={process.env.TINY_MCE}
+            onInit={(evt, editor) => (editorRef.current = editor)}
+            initialValue={dataValues.textContent}
+            init={{
+              height: 500,
+              menubar: true,
+              plugins: [
+                "advlist",
+                "anchor",
+                "autolink",
+                "help",
+                "image",
+                "link",
+                "lists",
+                "searchreplace",
+                "table",
+                "wordcount",
+              ],
+              toolbar:
+                "undo redo | blocks | " +
+                "bold italic forecolor backcolor | alignleft aligncenter " +
+                "alignright alignjustify | bullist numlist outdent indent | " +
+                "removeformat | help",
 
-          content_style:
-            "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
-        }}
-      />
-      <button
-        className="mt-6 text-center bg-primary text-background text-medium font-semibold border-2 border-background flex gap-2 items-center justify-center px-8 py-2 rounded"
-        onClick={updateData}
-      >
-        SAVE
-      </button>
+              content_style:
+                "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+            }}
+          />
+          <button
+            className="mt-6 text-center bg-background text-primary text-medium font-semibold border-2 border-background flex gap-2 items-center justify-center px-8 py-2 rounded"
+            onClick={updateData}
+          >
+            SAVE
+          </button>
+        </>
+      ) : (
+        <section className="container pt-6  xl:z-10 xl:h-full  grid grid-cols-4 grid-rows-layout col-span-1 gap-2 mt-3 ">
+          <div className="col-span-3 bg-[#e2e1e1] rounded-lg flex justify-center items-center ">
+            <h1 className="text-medium text-background font-bold">
+              Chooce a document in the sidebar to edit.
+            </h1>
+          </div>
+          <div className="col-span-1 bg-[#b7b7b7] rounded-lg  "></div>
+          <div className="col-span-1 bg-[#e2e1e1] rounded-lg "></div>
+          <div className="col-span-3 bg-[#b7b7b7] rounded-lg flex justify-center items-center "></div>
+          <div className="col-span-4 bg-[#e2e1e1] rounded-lg"></div>
+          <div className="col-span-3 bg-[#b7b7b7] rounded-lg flex justify-center items-center "></div>
+          <div className="col-span-1 bg-[#e2e1e1] rounded-lg "></div>
+          <div className="col-span-1 bg-[#b7b7b7] rounded-lg "></div>
+          <div className="col-span-3 bg-[#e2e1e1] rounded-lg flex justify-center items-center "></div>
+          <div className="col-span-4 bg-[#e2e1e1] rounded-lg "></div>
+          <div className="col-span-3 bg-[#b7b7b7] rounded-lg flex justify-center items-center"></div>
+          <div className="col-span-1 bg-[#e2e1e1] rounded-lg "></div>
+        </section>
+      )}
     </div>
   )
 }
