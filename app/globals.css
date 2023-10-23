@@ -7,3 +7,8 @@
   margin: 0;
   padding: 0;
 }
+
+.active {
+  border-bottom: 3px solid #61dbfb;
+  border-radius: 0.2rem;
+}

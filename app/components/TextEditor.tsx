@@ -1,9 +1,11 @@
 "use client"
 
-import React, { useContext, useEffect, useRef, useState } from "react"
+import React, { useContext, useRef } from "react"
 import BundledEditor from "../BundledEditor"
 import { DocContext } from "./DocContext"
 import { useRouter } from "next/navigation"
+
+import { Doc } from "../components/DocContext"
 
 export default function TextEditor() {
   const router = useRouter()
@@ -12,14 +14,14 @@ export default function TextEditor() {
   const editorRef = useRef(null)
 
   const updateData = () => {
-    let fontRef = editorRef.current.selection.getNode().style.color.toString()
-    let bgRef = editorRef.current.selection
+    let fontRef = editorRef.current?.selection.getNode().style.color.toString()
+    let bgRef = editorRef.current?.selection
       .getNode()
       .style.backgroundColor.toString()
 
-    let textRef = editorRef.current.getContent()
+    let textRef = editorRef.current?.getContent()
 
-    setDataValues((prevState) => {
+    setDataValues((prevState: Doc) => {
       const updatedDataValues = {
         ...prevState,
         textContent: textRef,
@@ -51,7 +53,7 @@ export default function TextEditor() {
         <>
           <BundledEditor
             apiKey={process.env.TINY_MCE}
-            onInit={(evt, editor) => (editorRef.current = editor)}
+            onInit={(evt: any, editor: any) => (editorRef.current = editor)}
             initialValue={dataValues.textContent}
             init={{
               height: 500,

@@ -16,7 +16,7 @@ interface Document {
   backgroundColor: string
 }
 
-interface Doc extends Document {
+export interface Doc extends Document {
   _id: number | null
   date: string
 }
