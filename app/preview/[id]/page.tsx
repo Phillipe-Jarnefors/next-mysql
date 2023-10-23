@@ -1,5 +1,6 @@
 import React from "react"
 import parse from "html-react-parser"
+import Link from "next/link"
 interface Document {
   _id: number
   name: string
@@ -29,23 +30,49 @@ const SinglePage = async ({ params }: { params: { id: string } }) => {
   }
 
   const singleDocElement = (
-    <div key={findSingleDoc._id} className="flex gap-10 flex-col items-center">
-      <div className="text-xl pt-10">{findSingleDoc.name}</div>
-      <div className="text-lg pt-6">Date: {findSingleDoc.date}</div>
-      <div className="flex gap-6  items-center">
-        <p>Textcolor:</p>
-        <div
-          style={{ backgroundColor: findSingleDoc.textColor }}
-          className="h-10 w-10"
-        ></div>
-        <p>Backgroundcolor:</p>
-        <div
-          style={{ backgroundColor: findSingleDoc.backgroundColor }}
-          className="h-10 w-10"
-        ></div>
+    <div className="w-full">
+      <div className="flex">
+        <Link href="./">
+          <p className="px-8 py-2 border-t-2 border-primary bg-background text-primary rounded-br-xl">
+            Go back
+          </p>
+        </Link>
       </div>
-      <div className="text-medium  leading-relaxed px-4 sm:px-20 pb-10">
-        {parse(findSingleDoc.textContent)}
+      <div
+        key={findSingleDoc._id}
+        className="flex gap-10 flex-col items-center"
+      >
+        <div className="text-xl ">{findSingleDoc.name}</div>
+        <div className="text-lg pt-6">{findSingleDoc.date}</div>
+        <div className="flex gap-4  items-center">
+          {findSingleDoc.textColor ? (
+            <>
+              <p className="font-bold">Textcolor</p>
+              <div
+                style={{ backgroundColor: findSingleDoc.textColor }}
+                className="h-12 w-12 rounded-full border-background border-2"
+              ></div>
+            </>
+          ) : (
+            <>
+              <p className="font-bold">Textcolor</p>
+              <div
+                style={{ backgroundColor: "black" }}
+                className="h-12 w-12 rounded-full border-background border-2"
+              ></div>
+            </>
+          )}
+          <p className="font-bold">Backgroundcolor</p>
+          <div
+            style={{ backgroundColor: findSingleDoc.backgroundColor }}
+            className="h-12 w-12 rounded-full border-background border-2"
+          ></div>
+        </div>
+        <div>
+          <div className="text-medium  leading-relaxed px-4 sm:px-20 pb-10">
+            {parse(findSingleDoc.textContent)}
+          </div>
+        </div>
       </div>
     </div>
   )

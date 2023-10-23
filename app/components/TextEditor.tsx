@@ -79,7 +79,7 @@ export default function TextEditor() {
             }}
           />
           <button
-            className="mt-6 text-center bg-background text-primary text-medium font-semibold border-2 border-background flex gap-2 items-center justify-center px-8 py-2 rounded"
+            className="mt-6 mb-10 text-center bg-background text-primary text-medium font-semibold border-2 border-background flex gap-2 items-center justify-center px-8 py-2 rounded"
             onClick={updateData}
           >
             SAVE
@@ -89,7 +89,7 @@ export default function TextEditor() {
         <section className="container pt-6  xl:z-10 xl:h-full  grid grid-cols-4 grid-rows-layout col-span-1 gap-2 mt-3 ">
           <div className="col-span-3 bg-[#e2e1e1] rounded-lg flex justify-center items-center ">
             <h1 className="text-medium text-background font-bold">
-              Chooce a document in the sidebar to edit.
+              Choose a document in the sidebar.
             </h1>
           </div>
           <div className="col-span-1 bg-[#b7b7b7] rounded-lg  "></div>

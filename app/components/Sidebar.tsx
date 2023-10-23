@@ -24,7 +24,7 @@ const Sidebar = async () => {
   const docs = data.digitalDocs
 
   return (
-    <div className="px-10 sm:px-4 text-primary bg-background text-center w-[100%] sm:w-[40%] lg:w-[20%]">
+    <div className="px-10 sm:px-4 text-primary bg-background text-center w-[100%] sm:w-[50%] md:w-[40%] lg:w-[30%] xl:w-[25%] xxl:w-[20%]">
       <div className="w-full h-2 bg-primary rounded"></div>
       <h2 className="text-standard py-6">Dashboard</h2>
       <AddNewButton />

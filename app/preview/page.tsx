@@ -22,11 +22,20 @@ const Preview = async () => {
   const data: DocumentAPI = await res.json()
   const docs = data.digitalDocs
 
+  const shortenText = (text: string, length: number) => {
+    if (text.length > length) {
+      return text.slice(0, length) + " ..."
+    }
+    return text
+  }
+
   const docElements = docs.map((doc) => (
     <Link key={doc._id} href={`/preview/${doc._id}`}>
       <div className="flex flex-col gap-4 pt-4">
-        <p>{doc.name}</p>
-        <div className="text-xl leading-normal">{parse(doc.textContent)}</div>
+        <p className="text-medium font-bold pt-4">{doc.name}</p>
+        <div className="text-xl leading-normal py-4">
+          {parse(shortenText(doc.textContent, 120))}
+        </div>
         <p>{doc.date}</p>
         <hr />
       </div>
