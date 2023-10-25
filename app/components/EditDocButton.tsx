@@ -4,7 +4,7 @@ import DeleteButton from "./DeleteButton"
 import { DocContext } from "./DocContext"
 import { DocumentAPI } from "@/src/interface/Interface"
 
-const EditDoc = ({ docs }: any) => {
+const EditDoc = ({ docs }) => {
   const [selectDoc, setSelectDoc] = useState(0)
   const { setDataValues } = useContext(DocContext)
 
@@ -16,11 +16,15 @@ const EditDoc = ({ docs }: any) => {
     }
   }
 
+  const sortByDate = docs.sort(
+    (a, b) => Date.parse(b.date) - Date.parse(a.date)
+  )
+
   return (
     <fieldset className="border-2 py-6 rounded bg-background flex items-center justify-center w-full">
       <legend className="font-medium">Documents</legend>
       <div className={`flex flex-col gap-4 mx-4 w-full`}>
-        {docs.map((doc: DocumentAPI) => (
+        {sortByDate.map((doc: DocumentAPI) => (
           <div
             key={doc._id}
             className={`border-2 rounded  ${

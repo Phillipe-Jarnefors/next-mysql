@@ -30,7 +30,7 @@ const SinglePage = async ({ params }: { params: { id: string } }) => {
   }
 
   const changeDate = (oldDate: string) => {
-    const date = new Date()
+    const date = new Date(oldDate)
     const formatDate = date.toLocaleString("sv-SE", {
       timeZone: "Europe/Stockholm",
       hour12: false,
@@ -58,7 +58,7 @@ const SinglePage = async ({ params }: { params: { id: string } }) => {
         className="flex gap-10 flex-col items-center"
       >
         <div className="text-lg pt-6 font-medium flex flex-col items-center">
-          <p>Last viewed</p>
+          <p>Updated at</p>
           {changeDate(findSingleDoc.date)}
         </div>
         <div className="text-xl ">{findSingleDoc.name}</div>

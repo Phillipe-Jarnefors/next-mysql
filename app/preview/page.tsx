@@ -44,22 +44,28 @@ const Preview = async () => {
     return formatDate
   }
 
-  const docElements = docs.map((doc) => (
-    <Link key={doc._id} href={`/preview/${doc._id}`}>
-      <div className="flex flex-col gap-4 pt-4">
-        <p className="text-medium font-bold pt-4">{doc.name}</p>
-        <div className="font-medium">
-          <p>
-            <p>Updated at</p>
-          </p>
-          {changeDate(doc.date)}
+  const sortByDate = docs.sort(
+    (a, b) => Date.parse(b.date) - Date.parse(a.date)
+  )
+
+  const docElements = sortByDate.map((doc) => (
+    <div key={doc._id}>
+      <Link href={`/preview/${doc._id}`}>
+        <div className="flex flex-col gap-4 pt-4">
+          <p className="text-medium font-bold pt-4">{doc.name}</p>
+          <div className="font-medium">
+            <p>
+              <p>Updated at</p>
+            </p>
+            {changeDate(doc.date)}
+          </div>
+          <div className="text-xl leading-normal py-4">
+            {parse(shortenText(doc.textContent, 120))}
+          </div>
+          <hr />
         </div>
-        <div className="text-xl leading-normal py-4">
-          {parse(shortenText(doc.textContent, 120))}
-        </div>
-        <hr />
-      </div>
-    </Link>
+      </Link>
+    </div>
   ))
 
   return <div className="border-2 px-2 text-center w-full">{docElements}</div>

@@ -45,6 +45,7 @@ export default function TextEditor() {
       }
     })
     router.refresh()
+    alert("Succesfully saved document.")
   }
 
   return (
