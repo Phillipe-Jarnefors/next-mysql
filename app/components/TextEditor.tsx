@@ -14,8 +14,8 @@ export default function TextEditor() {
   const editorRef = useRef(null)
 
   const updateData = () => {
-    let fontRef = editorRef.current?.selection.getNode().style.color.toString()
-    let bgRef = editorRef.current?.selection
+    let fontRef = editorRef.current.selection.getNode().style.color.toString()
+    let bgRef = editorRef.current.selection
       .getNode()
       .style.backgroundColor.toString()
 

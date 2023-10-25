@@ -7,6 +7,7 @@ export const DocContext = createContext<CartContextValue>({
   setDataValues: () => {},
   inputValues: {},
   setInputValues: () => {},
+  changeDate: () => {},
 })
 
 interface Document {
@@ -33,14 +34,35 @@ export const DocProvider = ({ children }: Props) => {
 
   const [inputValues, setInputValues] = useState<Document>({
     name: "",
-    textContent: "This is some new text...",
-    textColor: "black",
-    backgroundColor: "white",
+    textContent: "Your text document...",
+    textColor: "rgb(0,0,0)",
+    backgroundColor: "rgb(255,255,255)",
   })
+
+  const changeDate = (oldDate: string) => {
+    const date = new Date(oldDate)
+    const formatDate = date.toLocaleString("sv-SE", {
+      timeZone: "Europe/Stockholm",
+      hour12: false,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    })
+    return formatDate
+  }
 
   return (
     <DocContext.Provider
-      value={{ inputValues, setInputValues, dataValues, setDataValues }}
+      value={{
+        inputValues,
+        setInputValues,
+        dataValues,
+        setDataValues,
+        changeDate,
+      }}
     >
       {children}
     </DocContext.Provider>

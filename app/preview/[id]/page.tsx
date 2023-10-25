@@ -29,6 +29,21 @@ const SinglePage = async ({ params }: { params: { id: string } }) => {
     return <div>Document dont found</div>
   }
 
+  const changeDate = (oldDate: string) => {
+    const date = new Date()
+    const formatDate = date.toLocaleString("sv-SE", {
+      timeZone: "Europe/Stockholm",
+      hour12: false,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    })
+    return formatDate
+  }
+
   const singleDocElement = (
     <div className="w-full">
       <div className="flex">
@@ -42,8 +57,11 @@ const SinglePage = async ({ params }: { params: { id: string } }) => {
         key={findSingleDoc._id}
         className="flex gap-10 flex-col items-center"
       >
+        <div className="text-lg pt-6 font-medium flex flex-col items-center">
+          <p>Last viewed</p>
+          {changeDate(findSingleDoc.date)}
+        </div>
         <div className="text-xl ">{findSingleDoc.name}</div>
-        <div className="text-lg pt-6">{findSingleDoc.date}</div>
         <div className="flex gap-4  items-center">
           {findSingleDoc.textColor ? (
             <>
