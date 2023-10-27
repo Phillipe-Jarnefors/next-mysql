@@ -5,24 +5,25 @@ import BundledEditor from "../BundledEditor"
 import { DocContext } from "./DocContext"
 import { useRouter } from "next/navigation"
 import { Doc } from "@/src/interface/Interface"
+import { Editor } from "tinymce"
 
 export default function TextEditor() {
   const router = useRouter()
   const { dataValues, setDataValues } = useContext(DocContext)
 
-  const editorRef = useRef(null)
+  const editorRef = useRef<Editor | null>(null)
 
-  const updateData = () => {
-    let fontRef = editorRef.current.selection.getNode().style.color.toString()
-    let bgRef = editorRef.current.selection
-      .getNode()
-      .style.backgroundColor.toString()
+  const updateData = async () => {
+    if (editorRef.current) {
+      let fontRef = editorRef.current.selection.getNode().style.color.toString()
+      let bgRef = editorRef.current.selection
+        .getNode()
+        .style.backgroundColor.toString()
 
-    let textRef = editorRef.current?.getContent()
+      let textRef = editorRef.current?.getContent()
 
-    setDataValues((prevState: Doc) => {
       const updatedDataValues: Doc = {
-        ...prevState,
+        ...dataValues,
         textContent: textRef,
       }
 
@@ -37,13 +38,20 @@ export default function TextEditor() {
             date: "",
           }),
         }
-        const req = fetch("http://localhost:3000/api/digitaldocs", options)
-        return req
+        const res = await fetch(
+          "http://localhost:3000/api/digitaldocs",
+          options
+        )
+        if (res.ok) {
+          const updatedData = await res.json()
+          setDataValues(updatedData)
+          router.refresh()
+        }
+        return res
       } catch (error) {
         console.log(error)
       }
-    })
-    router.refresh()
+    }
     alert("Succesfully saved document.")
   }
 
