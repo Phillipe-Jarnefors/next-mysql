@@ -3,9 +3,13 @@ import React from "react"
 import { Icon } from "@iconify/react"
 import { useRouter } from "next/navigation"
 
-const DeleteButton = ({ docId }) => {
+interface Props {
+  docId: number
+}
+
+const DeleteButton = ({ docId }: Props) => {
   const router = useRouter()
-  const deleteDocument = async (docId) => {
+  const deleteDocument = async (docId: number) => {
     const options = {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },

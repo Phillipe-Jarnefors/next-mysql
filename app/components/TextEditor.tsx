@@ -4,8 +4,7 @@ import React, { useContext, useRef } from "react"
 import BundledEditor from "../BundledEditor"
 import { DocContext } from "./DocContext"
 import { useRouter } from "next/navigation"
-
-import { Doc } from "../components/DocContext"
+import { Doc } from "@/src/interface/Interface"
 
 export default function TextEditor() {
   const router = useRouter()
@@ -22,7 +21,7 @@ export default function TextEditor() {
     let textRef = editorRef.current?.getContent()
 
     setDataValues((prevState: Doc) => {
-      const updatedDataValues = {
+      const updatedDataValues: Doc = {
         ...prevState,
         textContent: textRef,
       }

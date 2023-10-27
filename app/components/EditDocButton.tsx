@@ -2,9 +2,13 @@
 import React, { useContext, useState } from "react"
 import DeleteButton from "./DeleteButton"
 import { DocContext } from "./DocContext"
-import { DocumentAPI } from "@/src/interface/Interface"
+import { DocumentAPI, Document } from "@/src/interface/Interface"
 
-const EditDoc = ({ docs }) => {
+interface Props {
+  docs: Array<DocumentAPI>
+}
+
+const EditDoc = ({ docs }: Props) => {
   const [selectDoc, setSelectDoc] = useState(0)
   const { setDataValues } = useContext(DocContext)
 
@@ -24,7 +28,7 @@ const EditDoc = ({ docs }) => {
     <fieldset className="border-2 py-6 rounded bg-background flex items-center justify-center w-full">
       <legend className="font-medium">Documents</legend>
       <div className={`flex flex-col gap-4 mx-4 w-full`}>
-        {sortByDate.map((doc: DocumentAPI) => (
+        {sortByDate.map((doc) => (
           <div
             key={doc._id}
             className={`border-2 rounded  ${

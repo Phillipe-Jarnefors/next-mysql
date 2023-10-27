@@ -52,7 +52,9 @@ const Preview = async () => {
     <div key={doc._id}>
       <Link href={`/preview/${doc._id}`}>
         <div className="flex flex-col gap-4 pt-4">
-          <p className="text-medium font-bold pt-4">{doc.name}</p>
+          <div className="text-medium font-bold pt-4">
+            <div>{doc.name}</div>
+          </div>
           <div className="font-medium">
             <p>
               <p>Updated at</p>

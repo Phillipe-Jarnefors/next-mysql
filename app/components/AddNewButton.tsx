@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useContext, useState } from "react"
+import React, { useContext } from "react"
 import { DocContext } from "./DocContext"
 import { useRouter } from "next/navigation"
 import { Icon } from "@iconify/react"
@@ -9,7 +9,7 @@ const AddNewButton = () => {
   const router = useRouter()
   const { inputValues, setInputValues } = useContext(DocContext)
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setInputValues((prevState) => ({
       ...prevState,

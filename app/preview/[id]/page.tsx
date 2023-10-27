@@ -62,30 +62,6 @@ const SinglePage = async ({ params }: { params: { id: string } }) => {
           {changeDate(findSingleDoc.date)}
         </div>
         <div className="text-xl ">{findSingleDoc.name}</div>
-        <div className="flex gap-4  items-center">
-          {findSingleDoc.textColor ? (
-            <>
-              <p className="font-bold">Textcolor</p>
-              <div
-                style={{ backgroundColor: findSingleDoc.textColor }}
-                className="h-12 w-12 rounded-full border-background border-2"
-              ></div>
-            </>
-          ) : (
-            <>
-              <p className="font-bold">Textcolor</p>
-              <div
-                style={{ backgroundColor: "black" }}
-                className="h-12 w-12 rounded-full border-background border-2"
-              ></div>
-            </>
-          )}
-          <p className="font-bold">Backgroundcolor</p>
-          <div
-            style={{ backgroundColor: findSingleDoc.backgroundColor }}
-            className="h-12 w-12 rounded-full border-background border-2"
-          ></div>
-        </div>
         <div>
           <div className="text-medium  leading-relaxed px-4 sm:px-20 pb-10">
             {parse(findSingleDoc.textContent)}

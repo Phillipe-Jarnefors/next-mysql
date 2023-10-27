@@ -1,26 +1,30 @@
 "use client"
-import { CartContextValue, CartProduct, Props, Product } from "./Interfaces"
-import { createContext, useEffect, useState } from "react"
 
-export const DocContext = createContext<CartContextValue>({
-  dataValues: {},
+import { Dispatch, SetStateAction, createContext, useState } from "react"
+import { Document, Doc, Props } from "@/src/interface/Interface"
+
+interface ContextValue {
+  dataValues: Doc
+  setDataValues: Dispatch<SetStateAction<Doc>>
+  inputValues: object
+  setInputValues: Dispatch<SetStateAction<Document>>
+  changeDate: (oldDate: string) => string
+}
+
+export const DocContext = createContext<ContextValue>({
+  dataValues: {
+    _id: null,
+    name: "",
+    textContent: "",
+    textColor: "",
+    backgroundColor: "",
+    date: "",
+  },
   setDataValues: () => {},
   inputValues: {},
   setInputValues: () => {},
-  changeDate: () => {},
+  changeDate: () => "",
 })
-
-interface Document {
-  name: string
-  textContent: string
-  textColor: string
-  backgroundColor: string
-}
-
-export interface Doc extends Document {
-  _id: number | null
-  date: string
-}
 
 export const DocProvider = ({ children }: Props) => {
   const [dataValues, setDataValues] = useState<Doc>({
